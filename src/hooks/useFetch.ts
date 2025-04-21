@@ -1,5 +1,5 @@
-import axios, { AxiosRequestConfig } from 'axios';
-import { useEffect, useState } from 'react';
+import axios, { AxiosRequestConfig } from "axios";
+import { useEffect, useState } from "react";
 
 interface UseFetchResult<T> {
   data: T | null;
@@ -7,7 +7,10 @@ interface UseFetchResult<T> {
   error: string | null;
 }
 
-const useFetch = <T = unknown>(url: string, options: AxiosRequestConfig = {}): UseFetchResult<T> => {
+const useFetch = <T = unknown>(
+  url: string,
+  options: AxiosRequestConfig = {}
+): UseFetchResult<T> => {
   const [responseData, setResponseData] = useState<T | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
