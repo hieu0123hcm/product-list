@@ -26,6 +26,20 @@ const ProductList = () => {
   const { data, isLoading, error } = useFetch<ResponseData>(`https://dummyjson.com/products?limit=${PRODUCTS_PER_PAGE}&skip=${getSkipValue(page)}`);
 
   useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.innerHeight + window.scrollY;
+      const bottomPosition = document.documentElement.scrollHeight;
+
+      if (scrollPosition >= bottomPosition) {
+        handleFetch();
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
     if (data?.products) {
       setTotalList((prevList) => [...prevList, ...data.products]);
     }
@@ -53,7 +67,6 @@ const ProductList = () => {
           <p>No data found</p>
         )}
       </div>
-      <button onClick={handleFetch}>Click to fetch more</button>
     </>
   );
 };
