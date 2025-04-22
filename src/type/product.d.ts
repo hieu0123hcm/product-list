@@ -6,7 +6,7 @@ interface Product {
   price: number;
 }
 
-interface ResponseData {
+interface ProductResponseData {
   products: Product[];
   skip: number;
   total: number;
