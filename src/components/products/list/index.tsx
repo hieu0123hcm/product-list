@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { getSkipValue } from "@utils/paging";
-import useFetch from "@hooks/useFetch";
-import useInfiniteScroll from "@hooks/useInfiniteScroll";
-import ProductCard from "@components/products/card";
-import { debounce } from "lodash";
+import { useEffect, useState } from 'react';
+import { getSkipValue } from '@utils/paging';
+import useFetch from '@hooks/useFetch';
+import useInfiniteScroll from '@hooks/useInfiniteScroll';
+import { debounce } from 'lodash';
+import { ProductCard } from '@components/products';
 
 const PRODUCTS_PER_PAGE = 20;
 const DEBOUNCE_DELAY = 300;
@@ -19,11 +19,7 @@ const ProductList = () => {
   const debouncedIncreasePage = debounce(increasePage, DEBOUNCE_DELAY);
 
   // Fetch data from the API
-  const { data, isLoading, error } = useFetch<ResponseData>(
-    `https://dummyjson.com/products?limit=${PRODUCTS_PER_PAGE}&skip=${getSkipValue(
-      page
-    )}`
-  );
+  const { data, isLoading, error } = useFetch<ResponseData>(`https://dummyjson.com/products?limit=${PRODUCTS_PER_PAGE}&skip=${getSkipValue(page)}`);
 
   useInfiniteScroll(debouncedIncreasePage, 0);
 
@@ -33,15 +29,14 @@ const ProductList = () => {
     }
   }, [data]);
 
+  const hasNoData = !isLoading && totalList.length === 0;
+
   return (
     <>
       {error && <p>{error}</p>}
       <div className="product-list">
-        {totalList.length > 0
-          ? totalList.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))
-          : !isLoading && <p>No data found</p>}
+        {totalList.length > 0 && totalList.map((product) => <ProductCard key={product.id} product={product} />)}
+        {hasNoData && <p>No products found.</p>}
       </div>
       {isLoading && <p>Loading...</p>}
     </>
