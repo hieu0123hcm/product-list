@@ -1,5 +1,3 @@
-# product-list
- This is Assessment Test for Burning Bros company
 # Product List
 
 This is Assessment Test for Burning Bros company
@@ -30,15 +28,4 @@ To start the development server:
 ```bash
 npm run dev
 ```
-The application will be available at `http://localhost:3000`
-
-### Production Build
-
-To create a production build:
-```bash
-npm run build
-```
-
-To start the production server:
-```bash
-npm start
+The application will be available at `http://localhost:5173` 
