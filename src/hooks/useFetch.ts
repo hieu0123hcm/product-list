@@ -1,5 +1,5 @@
-import axios, { AxiosRequestConfig } from "axios";
-import { useEffect, useState } from "react";
+import axios, { AxiosRequestConfig } from 'axios';
+import { useEffect, useState } from 'react';
 
 interface UseFetchResult<T> {
   data: T | null;
@@ -7,10 +7,7 @@ interface UseFetchResult<T> {
   error: string | null;
 }
 
-const useFetch = <T = unknown>(
-  url: string,
-  options: AxiosRequestConfig = {}
-): UseFetchResult<T> => {
+const useFetch = <T = unknown>(url: string, options: AxiosRequestConfig = {}): UseFetchResult<T> => {
   const [responseData, setResponseData] = useState<T | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -22,21 +19,21 @@ const useFetch = <T = unknown>(
 
     const fetchData = async () => {
       setIsLoading(true);
-      axios
-        .get<T>(url, {
+      try {
+        const { data } = await axios.get<T>(url, {
           ...options,
           signal: controller.signal,
-        })
-        .then((res) => {
-          setIsLoading(false);
-          setResponseData(res.data);
-        })
-        .catch((error) => {
-          setIsLoading(false);
-          if (axios.isAxiosError(error) && !axios.isCancel(error)) {
-            setErrorMessage(error);
-          }
         });
+        setIsLoading(false);
+        setResponseData(data);
+      } catch (error) {
+        if (axios.isAxiosError(error) && !axios.isCancel(error)) {
+          setIsLoading(false);
+          setErrorMessage(error);
+        }
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     fetchData();
