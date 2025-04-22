@@ -4,6 +4,7 @@ import useFetch from '@hooks/useFetch';
 import useInfiniteScroll from '@hooks/useInfiniteScroll';
 import { debounce } from 'lodash';
 import { ProductCard } from '@components/products';
+import './list.css';
 
 const PRODUCTS_PER_PAGE = 20;
 const DEBOUNCE_DELAY = 300;

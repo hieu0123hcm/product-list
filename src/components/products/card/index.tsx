@@ -1,3 +1,4 @@
+import './card.css';
 const ProductCard = ({ product }: { product: Product }) => {
   const { id, title, description, images, price } = product;
 

@@ -18,34 +18,6 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-.product-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2em;
-}
-
-.product {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 1em;
-  background-color: #fff;
-  color: #333;
-  max-width: 250px;
-  padding: 1em;
-  overflow: hidden;
-  box-sizing: border-box;
-  text-align: left;
-  img {
-    max-height: 200px;
-    width: 100%;
-    object-fit: contain;
-    flex-shrink: 0;
-    display: block;
-  }
-}
-
 .product @keyframes logo-spin {
   from {
     transform: rotate(0deg);
