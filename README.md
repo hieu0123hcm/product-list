@@ -4,7 +4,7 @@ This is Assessment Test for Burning Bros company
 
 ## Prerequisites
 
-- Node.js (v16 or higher)
+- Node.js 
 - npm (Node Package Manager)
 
 ## Installation
@@ -14,8 +14,12 @@ This is Assessment Test for Burning Bros company
 git clone <repository-url>
 cd product-list
 ```
+2. Switch to the correct Node.js version:
+```bash
+nvm use
+```
 
-2. Install dependencies:
+3. Install dependencies:
 ```bash
 npm install
 ```
